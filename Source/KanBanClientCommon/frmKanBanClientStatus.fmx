@@ -1,0 +1,92 @@
+object frmKBClientStatus: TfrmKBClientStatus
+  Align = Client
+  Size.Width = 598.000000000000000000
+  Size.Height = 408.000000000000000000
+  Size.PlatformDefault = False
+  object sbClientStatus: TTMSFNCStatusBar
+    Position.Y = 388.000000000000000000
+    Size.Width = 598.000000000000000000
+    Size.Height = 20.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Panels = <
+      item
+        Width = 50
+        Progress.Level0Fill.Color = claLime
+        Progress.Level1Fill.Color = claYellow
+        Progress.Level2Fill.Color = claOrange
+        Progress.Level3Fill.Color = claRed
+        Progress.Position = 0
+      end>
+    PanelAppearance.Font.Name = 'Segoe UI'
+  end
+  object TMSFNCToolBar1: TTMSFNCToolBar
+    Align = Top
+    Size.Width = 598.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    CompactBitmaps = <>
+    Font.Name = 'Segoe UI'
+    object btnClientConnect: TTMSFNCToolBarButton
+      Color = claNull
+      Position.X = 9.000000000000000000
+      Position.Y = 3.000000000000000000
+      Size.Width = 72.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      OnClick = btnClientConnectClick
+      Font.Name = 'Segoe UI'
+      Text = 'Connect'
+      Bitmaps = <>
+      LargeLayoutBitmaps = <>
+      DisabledBitmaps = <>
+      HoverBitmaps = <>
+      LargeLayoutDisabledBitmaps = <>
+      LargeLayoutHoverBitmaps = <>
+      ControlIndex = 0
+    end
+    object btnClientDisconnect: TTMSFNCToolBarButton
+      Color = claNull
+      Position.X = 84.000000000000000000
+      Position.Y = 3.000000000000000000
+      Size.Width = 85.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Name = 'Segoe UI'
+      Text = 'DisConnect'
+      Bitmaps = <>
+      LargeLayoutBitmaps = <>
+      DisabledBitmaps = <>
+      HoverBitmaps = <>
+      LargeLayoutDisabledBitmaps = <>
+      LargeLayoutHoverBitmaps = <>
+      ControlIndex = 1
+    end
+  end
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Align = Client
+    Size.Width = 598.000000000000000000
+    Size.Height = 358.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Viewport.Width = 594.000000000000000000
+    Viewport.Height = 354.000000000000000000
+  end
+  object tmrPush: TTimer
+    Enabled = False
+    OnTimer = tmrPushTimer
+    Left = 288
+    Top = 192
+  end
+  object tmrPull: TTimer
+    Enabled = False
+    OnTimer = tmrPullTimer
+    Left = 296
+    Top = 200
+  end
+end

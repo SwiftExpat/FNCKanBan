@@ -17,6 +17,10 @@ type
     procedure FormCreate(ASender: TObject);
   strict private
     procedure UpdateGUI;
+
+  private
+    procedure StartServer;
+    procedure StopServer;
   end;
 
 var
@@ -49,6 +53,7 @@ begin
   UpdateGUI;
 end;
 
+
 procedure TMainForm.UpdateGUI;
 const
   cHttp = 'http://+';
@@ -63,5 +68,16 @@ begin
   else
     mmInfo.Lines.Add(SServerStopped);
 end;
+
+procedure TMainForm.StartServer;
+begin
+
+end;
+
+procedure TMainForm.StopServer;
+begin
+
+end;
+
 
 end.

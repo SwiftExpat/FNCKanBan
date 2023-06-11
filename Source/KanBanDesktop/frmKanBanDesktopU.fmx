@@ -1,14 +1,15 @@
 object frmKanBanDesktop: TfrmKanBanDesktop
   Left = 0
   Top = 0
-  Caption = 'Form5'
+  Caption = 'Kan Ban Client Desktop'
   ClientHeight = 508
   ClientWidth = 878
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
   DesignerMasterStyle = 0
-  object TMSFNCPageControl1: TTMSFNCPageControl
+  object pcMain: TTMSFNCPageControl
     Align = Client
     Size.Width = 878.000000000000000000
     Size.Height = 508.000000000000000000

@@ -2,16 +2,16 @@ object frmKanBanMobile: TfrmKanBanMobile
   Left = 0
   Top = 0
   Caption = 'KanBanMobile'
-  ClientHeight = 542
-  ClientWidth = 782
+  ClientHeight = 560
+  ClientWidth = 890
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
   object TMSFNCPageControl1: TTMSFNCPageControl
     Align = Client
-    Size.Width = 782.000000000000000000
-    Size.Height = 542.000000000000000000
+    Size.Width = 890.000000000000000000
+    Size.Height = 560.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     Fill.Kind = gfkNone
@@ -142,8 +142,8 @@ object frmKanBanMobile: TfrmKanBanMobile
     object TMSFNCPageControl1Page1: TTMSFNCPageControlContainer
       Align = Client
       Margins.Top = 29.000000000000000000
-      Size.Width = 782.000000000000000000
-      Size.Height = 513.000000000000000000
+      Size.Width = 890.000000000000000000
+      Size.Height = 531.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       TabStop = False
@@ -153,8 +153,8 @@ object frmKanBanMobile: TfrmKanBanMobile
     object TMSFNCPageControl1Page2: TTMSFNCPageControlContainer
       Align = Client
       Margins.Top = 29.000000000000000000
-      Size.Width = 782.000000000000000000
-      Size.Height = 513.000000000000000000
+      Size.Width = 890.000000000000000000
+      Size.Height = 531.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
       TabStop = False
@@ -164,8 +164,8 @@ object frmKanBanMobile: TfrmKanBanMobile
     object TMSFNCPageControl1Page0: TTMSFNCPageControlContainer
       Align = Client
       Margins.Top = 29.000000000000000000
-      Size.Width = 782.000000000000000000
-      Size.Height = 513.000000000000000000
+      Size.Width = 890.000000000000000000
+      Size.Height = 531.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       TabStop = False
@@ -174,8 +174,8 @@ object frmKanBanMobile: TfrmKanBanMobile
       object TMSFNCKanbanBoard1: TTMSFNCKanbanBoard
         Color = xFFEEF2F9
         Align = Client
-        Size.Width = 782.000000000000000000
-        Size.Height = 513.000000000000000000
+        Size.Width = 890.000000000000000000
+        Size.Height = 531.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         Fill.Color = xFFEEF2F9
