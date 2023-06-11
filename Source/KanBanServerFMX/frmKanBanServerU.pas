@@ -137,7 +137,7 @@ begin
 
   // Echo Server
   Pool := CreatePool(1);
-  EchoModule := TEchoServerModule.Create('http://+:2001/tms/echo', Pool);
+  EchoModule := TEchoServerModule.Create('http://+:2001/tms/echokb', Pool);
   SparkleServer.AddModule(EchoModule);
 
   Echo := TEcho.Create(Pool);

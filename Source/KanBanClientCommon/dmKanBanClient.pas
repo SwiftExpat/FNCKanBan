@@ -9,21 +9,20 @@ uses
   Echo.Main, Vcl.ExtCtrls;
 
 const
-  URI_Remote_Node = 'http://localhost:2001/tms/echo';
+  URI_Remote_Node = 'http://localhost:2001/tms/echokb';
 
 type
   TdmKBClient = class(TDataModule)
   private
     FEcho: TEcho;
-    // FEchoServer: TEcho;
     FDBName: string;
     procedure UpdateDBStructure;
     procedure InitialSetup;
     procedure SetupNodes;
+    function CreateConnection(const ADBName: string): IDBConnection;
   public
     constructor Create(AOwner: TComponent; const ADBName: string; const AServerDBName: string = ''); reintroduce;
     destructor Destroy; override;
-    function CreateConnection(const ADBName: string): IDBConnection;
     procedure Push;
     procedure Pull;
     property DBName: string read FDBName;

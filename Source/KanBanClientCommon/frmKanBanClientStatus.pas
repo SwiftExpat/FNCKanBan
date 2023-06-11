@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.TMSFNCTypes, FMX.TMSFNCUtils,
   FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCToolBar, FMX.TMSFNCCustomControl, FMX.TMSFNCStatusBar,
-  dmKanBanClient, FMX.Memo.Types, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo;
+  dmKanBanClient, FMX.Memo.Types, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo, Echo.Listeners;
 
 type
   TfrmKBClientStatus = class(TFrame)
@@ -22,6 +22,7 @@ type
     procedure tmrPushTimer(Sender: TObject);
   private
     FDMKanBanClient: TdmKBClient;
+    FEchoSubscriber: TEchoEventSubscriber;
     // FManager: TObjectManager;
     FClientName: string;
     procedure LogMsg(AMessage: string);
@@ -36,6 +37,8 @@ implementation
 procedure TfrmKBClientStatus.btnClientConnectClick(Sender: TObject);
 begin
   try
+    FEchoSubscriber := TEchoEventSubscriber.Create;
+    FEchoSubscriber.SubscribeListeners;
     LogMsg('Begin Echo connection');
     FDMKanBanClient := TdmKBClient.Create(Application, FClientName);
     tmrPush.Enabled := true;

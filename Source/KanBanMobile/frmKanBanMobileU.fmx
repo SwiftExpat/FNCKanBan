@@ -7,8 +7,9 @@ object frmKanBanMobile: TfrmKanBanMobile
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
   DesignerMasterStyle = 0
-  object TMSFNCPageControl1: TTMSFNCPageControl
+  object pcMain: TTMSFNCPageControl
     Align = Client
     Size.Width = 890.000000000000000000
     Size.Height = 560.000000000000000000
