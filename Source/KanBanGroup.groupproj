@@ -1,15 +1,12 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{E24E5CF9-2FAD-48C8-A3F6-0DAD6690B09C}</ProjectGuid>
+        <ProjectGuid>{BB247F3A-81D6-4739-934A-B94F14CC1B37}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="KanBanEntities\KanBanEntities.dproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="KanBanEntityDictionary\KB_Dictionary.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="KanBanServer\KanBanServer.dproj">
+        <Projects Include="KanBanEntities\KanBanEntities.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="KanBanServerFMX\KanBanServerFMX.dproj">
@@ -21,12 +18,6 @@
         <Projects Include="KanBanMobile\KanBanMobile.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="C:\Users\Coder\Documents\tmssoftware\business11\echo\Demos\xdata\server\server\Echo_Server.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="C:\Users\Coder\Documents\tmssoftware\business11\echo\Demos\xdata\client\EchoTestDemo.dproj">
-            <Dependencies/>
-        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,15 +26,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="KanBanEntities">
-        <MSBuild Projects="KanBanEntities\KanBanEntities.dproj"/>
-    </Target>
-    <Target Name="KanBanEntities:Clean">
-        <MSBuild Projects="KanBanEntities\KanBanEntities.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="KanBanEntities:Make">
-        <MSBuild Projects="KanBanEntities\KanBanEntities.dproj" Targets="Make"/>
-    </Target>
     <Target Name="KB_Dictionary">
         <MSBuild Projects="KanBanEntityDictionary\KB_Dictionary.dproj"/>
     </Target>
@@ -53,14 +35,14 @@
     <Target Name="KB_Dictionary:Make">
         <MSBuild Projects="KanBanEntityDictionary\KB_Dictionary.dproj" Targets="Make"/>
     </Target>
-    <Target Name="KanBanServer">
-        <MSBuild Projects="KanBanServer\KanBanServer.dproj"/>
+    <Target Name="KanBanEntities">
+        <MSBuild Projects="KanBanEntities\KanBanEntities.dproj"/>
     </Target>
-    <Target Name="KanBanServer:Clean">
-        <MSBuild Projects="KanBanServer\KanBanServer.dproj" Targets="Clean"/>
+    <Target Name="KanBanEntities:Clean">
+        <MSBuild Projects="KanBanEntities\KanBanEntities.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="KanBanServer:Make">
-        <MSBuild Projects="KanBanServer\KanBanServer.dproj" Targets="Make"/>
+    <Target Name="KanBanEntities:Make">
+        <MSBuild Projects="KanBanEntities\KanBanEntities.dproj" Targets="Make"/>
     </Target>
     <Target Name="KanBanServerFMX">
         <MSBuild Projects="KanBanServerFMX\KanBanServerFMX.dproj"/>
@@ -89,32 +71,14 @@
     <Target Name="KanBanMobile:Make">
         <MSBuild Projects="KanBanMobile\KanBanMobile.dproj" Targets="Make"/>
     </Target>
-    <Target Name="Echo_Server">
-        <MSBuild Projects="C:\Users\Coder\Documents\tmssoftware\business11\echo\Demos\xdata\server\server\Echo_Server.dproj"/>
-    </Target>
-    <Target Name="Echo_Server:Clean">
-        <MSBuild Projects="C:\Users\Coder\Documents\tmssoftware\business11\echo\Demos\xdata\server\server\Echo_Server.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="Echo_Server:Make">
-        <MSBuild Projects="C:\Users\Coder\Documents\tmssoftware\business11\echo\Demos\xdata\server\server\Echo_Server.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="EchoTestDemo">
-        <MSBuild Projects="C:\Users\Coder\Documents\tmssoftware\business11\echo\Demos\xdata\client\EchoTestDemo.dproj"/>
-    </Target>
-    <Target Name="EchoTestDemo:Clean">
-        <MSBuild Projects="C:\Users\Coder\Documents\tmssoftware\business11\echo\Demos\xdata\client\EchoTestDemo.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="EchoTestDemo:Make">
-        <MSBuild Projects="C:\Users\Coder\Documents\tmssoftware\business11\echo\Demos\xdata\client\EchoTestDemo.dproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="KanBanEntities;KB_Dictionary;KanBanServer;KanBanServerFMX;KanBanDesktop;KanBanMobile;Echo_Server;EchoTestDemo"/>
+        <CallTarget Targets="KB_Dictionary;KanBanEntities;KanBanServerFMX;KanBanDesktop;KanBanMobile"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="KanBanEntities:Clean;KB_Dictionary:Clean;KanBanServer:Clean;KanBanServerFMX:Clean;KanBanDesktop:Clean;KanBanMobile:Clean;Echo_Server:Clean;EchoTestDemo:Clean"/>
+        <CallTarget Targets="KB_Dictionary:Clean;KanBanEntities:Clean;KanBanServerFMX:Clean;KanBanDesktop:Clean;KanBanMobile:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="KanBanEntities:Make;KB_Dictionary:Make;KanBanServer:Make;KanBanServerFMX:Make;KanBanDesktop:Make;KanBanMobile:Make;Echo_Server:Make;EchoTestDemo:Make"/>
+        <CallTarget Targets="KB_Dictionary:Make;KanBanEntities:Make;KanBanServerFMX:Make;KanBanDesktop:Make;KanBanMobile:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

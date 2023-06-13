@@ -6,13 +6,17 @@ uses
   System.SysUtils, System.Classes,
   Aurelius.Drivers.Interfaces,
   Aurelius.Drivers.Base,
-  Echo.Main, Vcl.ExtCtrls;
+  Echo.Main;
 
 const
   URI_Remote_Node = 'http://localhost:2001/tms/echokb';
 
 type
+  TKanBanClientMessage = procedure(AMessage: string) of object;
+
   TdmKBClient = class(TDataModule)
+  strict private
+    FClientMsg: TKanBanClientMessage;
   private
     FEcho: TEcho;
     FDBName: string;
@@ -20,6 +24,7 @@ type
     procedure InitialSetup;
     procedure SetupNodes;
     function CreateConnection(const ADBName: string): IDBConnection;
+    procedure LogMsg(AMessage: string);
   public
     constructor Create(AOwner: TComponent; const ADBName: string; const AServerDBName: string = ''); reintroduce;
     destructor Destroy; override;
@@ -27,6 +32,7 @@ type
     procedure Pull;
     property DBName: string read FDBName;
     property Echo: TEcho read FEcho;
+    property OnClientMessage: TKanBanClientMessage read FClientMsg write FClientMsg;
   end;
 
 var
@@ -43,7 +49,9 @@ uses
   Aurelius.Mapping.Explorer,
   Aurelius.Sql.SQLite,
   Aurelius.Schema.SQLite,
-  KanBanEntityTypes;
+  KanBanEntityTypes,
+  Echo.Entities,
+  EchoUtilTypes;
 
 {%CLASSGROUP 'FMX.Controls.TControl'}
 {$R *.dfm}
@@ -89,6 +97,13 @@ begin
 
 end;
 
+procedure TdmKBClient.LogMsg(AMessage: string);
+begin
+  if Assigned(FClientMsg) then
+    FClientMsg(AMessage);
+
+end;
+
 procedure TdmKBClient.Pull;
 begin
   // Route all changes to the nodes that should receive changes
@@ -96,14 +111,30 @@ begin
 
   // process on client
   FEcho.BatchLoad;
-  FEcho.Route;
+  FEcho.Route(
+    procedure(Log: TEchoLog; Node: TEchoNode; var Route: boolean)
+    begin
+      if Log.OriginNode <> nil then
+        LogMsg(Log.OriginNode.Id + ' changed entity ' + Log.EntityClass)
+      else
+        LogMsg('changed entity ' + Log.EntityClass);
+      LogMsg(EchoLogOperations[Log.Operation] + ' sent to ' + Node.Id);
+    end);
 
 end;
 
 procedure TdmKBClient.Push;
 begin
   // Route all changes to the nodes that should receive changes
-  FEcho.Route;
+  FEcho.Route(
+    procedure(Log: TEchoLog; Node: TEchoNode; var Route: boolean)
+    begin
+      if Log.OriginNode <> nil then
+        LogMsg(Log.OriginNode.Id + ' changed entity ' + Log.EntityClass)
+      else
+        LogMsg('changed entity ' + Log.EntityClass);
+      LogMsg(EchoLogOperations[Log.Operation] + ' sent to ' + Node.Id);
+    end);
 
   // Send changes to server node
   FEcho.GetRemoteNode(URI_Remote_Node).Push;
@@ -121,17 +152,18 @@ begin
   NodeManager := FEcho.GetNodeManager;
 
   // If SelfNode is already defined, no need to define it again
-  if NodeManager.SelfNode <> nil then
-    Exit;
+  if NodeManager.SelfNode = nil then
+  begin
 
-  // SelfNode is not defined, so let's create a Node instance with the name
-  // specified by the DBName property ("client1", "client2", "server" in the case
-  // of our demo application. It can be any string value, it just needs
-  // to be unique among all other databases being replicated.
-  NodeManager.CreateNode(DBName);
+    // SelfNode is not defined, so let's create a Node instance with the name
+    // specified by the DBName property ("client1", "client2", "server" in the case
+    // of our demo application. It can be any string value, it just needs
+    // to be unique among all other databases being replicated.
+    NodeManager.CreateNode(DBName);
 
-  // Now define this newly created node as the SelfNode
-  NodeManager.DefineSelfNode(DBName);
+    // Now define this newly created node as the SelfNode
+    NodeManager.DefineSelfNode(DBName);
+  end;
 
   // Register this node at the server, if this is a client module
   FEcho.GetRemoteNode(URI_Remote_Node).RegisterNode;

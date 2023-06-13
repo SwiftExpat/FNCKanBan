@@ -17,7 +17,8 @@ uses
   Sparkle.HttpServer.Context,
   Sparkle.HttpServer.Module,
   Sparkle.Sys.Timer,
-  Echo.Server, Echo.Main;
+  Echo.Server, Echo.Main, Echo.Entities;
+// Echo.Service, Echo.Engine, Echo.Engine.Remote,
 
 type
   TfrmKanBanServer = class(TForm)
@@ -60,15 +61,16 @@ implementation
 uses
   XData.Aurelius.ConnectionPool,
   Aurelius.Drivers.Base,
-    KanBanEntityTypes;
+  KanBanEntityTypes,
+  EchoUtilTypes;
 
 {$R *.fmx}
-{ TfrmKanBanServer }
+  { TfrmKanBanServer }
 
 procedure TfrmKanBanServer.btnServerStartClick(Sender: TObject);
 begin
   StartServer;
-  ButtonUpdate
+  ButtonUpdate;
 end;
 
 procedure TfrmKanBanServer.btnServerStopClick(Sender: TObject);
@@ -169,7 +171,13 @@ begin
     procedure(Echo: TObject)
     begin
       TEcho(Echo).BatchLoad;
-      TEcho(Echo).Route;
+      TEcho(Echo).Route(
+        procedure(Log: TEchoLog; Node: TEchoNode; var Route: boolean)
+        begin
+          LogMessage(Log.OriginNode.Id + ' changed entity ' + Log.EntityClass);
+          LogMessage(EchoLogOperations[Log.Operation]+' sent to ' + Node.Id);
+        end);
+      LogMessage('Routed');
     end, Echo, 2000, TTimerType.Periodic);
 
   SparkleServer.Start;

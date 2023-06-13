@@ -162,6 +162,13 @@ object frmKanBanDesktop: TfrmKanBanDesktop
       PageIndex = 2
       IsActive = False
     end
+    object Button1: TButton
+      Position.X = 304.000000000000000000
+      Position.Y = 8.000000000000000000
+      TabOrder = 3
+      Text = 'Button1'
+      OnClick = Button1Click
+    end
     object TMSFNCPageControl1Page0: TTMSFNCPageControlContainer
       Align = Client
       Margins.Top = 29.000000000000000000

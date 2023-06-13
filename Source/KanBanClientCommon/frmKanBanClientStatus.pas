@@ -21,7 +21,6 @@ type
     procedure tmrPullTimer(Sender: TObject);
     procedure tmrPushTimer(Sender: TObject);
   private
-    FDMKanBanClient: TdmKBClient;
     FEchoSubscriber: TEchoEventSubscriber;
     // FManager: TObjectManager;
     FClientName: string;
@@ -40,7 +39,8 @@ begin
     FEchoSubscriber := TEchoEventSubscriber.Create;
     FEchoSubscriber.SubscribeListeners;
     LogMsg('Begin Echo connection');
-    FDMKanBanClient := TdmKBClient.Create(Application, FClientName);
+    dmKBClient := TdmKBClient.Create(Application, FClientName);
+    dmKBClient.OnClientMessage := LogMsg;
     tmrPush.Enabled := true;
     tmrPull.Enabled := true;
     LogMsg('Echo connected');
@@ -67,12 +67,14 @@ end;
 
 procedure TfrmKBClientStatus.tmrPullTimer(Sender: TObject);
 begin
-       FDMKanBanClient.Pull;
+  dmKBClient.Pull;
+  LogMsg('Pull executed');
 end;
 
 procedure TfrmKBClientStatus.tmrPushTimer(Sender: TObject);
 begin
-     FDMKanBanClient.Push;
+  dmKBClient.Push;
+  LogMsg('Push executed');
 end;
 
 end.

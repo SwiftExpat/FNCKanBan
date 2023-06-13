@@ -35,6 +35,7 @@ requires
 
 contains
   KanBanEntityTypes in 'KanBanEntityTypes.pas',
-  KanBanEntityDictionary in 'KanBanEntityDictionary.pas';
+  KanBanEntityDictionary in 'KanBanEntityDictionary.pas',
+  EchoUtilTypes in 'EchoUtilTypes.pas';
 
 end.

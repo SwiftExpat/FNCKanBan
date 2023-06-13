@@ -88,6 +88,7 @@ type
     // nullable?
   end;
 
+
 implementation
 
 { TKanBanItemAuditEntry }
