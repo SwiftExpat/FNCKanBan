@@ -1,25 +1,29 @@
-unit frmKanBanClientBoard;
+unit formKanBanClientBoard;
 
 interface
 
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.TMSFNCTypes, FMX.TMSFNCUtils,
-  FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomControl, FMX.TMSFNCCustomScrollControl,
-  FMX.TMSFNCKanbanBoard, Generics.Collections, frmKanBanBoardConfigure,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics,
+  FMX.TMSFNCGraphicsTypes, FMX.TMSFNCToolBar, FMX.Controls.Presentation, FMX.StdCtrls, FMX.TMSFNCCustomControl,
+  FMX.TMSFNCCustomScrollControl, FMX.TMSFNCKanbanBoard, FMX.Layouts,
+  Generics.Collections, frmKanBanBoardConfigure,
   dmKanBanClient, KanBanEntityTypes, KanBanEntityDictionary,
-  Aurelius.Drivers.Interfaces, Aurelius.Engine.ObjectManager, Aurelius.Bind.Dataset, Aurelius.Bind.BaseDataset, Data.DB,
-  FMX.Layouts, FMX.TMSFNCToolBar, FMX.Controls.Presentation;
+  Aurelius.Drivers.Interfaces, Aurelius.Engine.ObjectManager;
 
 type
-  TfrmKanBanBoard = class(TFrame)
-    KbBoard: TTMSFNCKanbanBoard;
-    adsColumns: TAureliusDataset;
+  TfrmKanBanBoard = class(TForm)
     lytBoard: TLayout;
+    KbBoard: TTMSFNCKanbanBoard;
+    pnlConfigure: TPanel;
     tbBoard: TTMSFNCToolBar;
     tbBtnConfigure: TTMSFNCToolBarButton;
-    pnlConfigure: TPanel;
+    pnlDetail: TPanel;
+    TMSFNCToolBar1: TTMSFNCToolBar;
+    tbBtnDetailClose: TTMSFNCToolBarButton;
+    procedure KbBoardItemDblClick(Sender: TObject; AColumn: TTMSFNCKanbanBoardColumn; AItem: TTMSFNCKanbanBoardItem);
     procedure tbBtnConfigureClick(Sender: TObject);
+    procedure tbBtnDetailCloseClick(Sender: TObject);
   strict private
     FManager: TObjectManager;
     procedure InitManager;
@@ -30,22 +34,35 @@ type
     FStatusList: TObjectList<TKanBanItemStatus>;
     FItemsList: TObjectList<TKanBanItem>;
     FBoardConfig: TfrmKanBanBoardConfig;
+    procedure FocusPanel(APanel: TPanel);
   public
     procedure LoadBoard;
   end;
 
+var
+  frmKanBanBoard: TfrmKanBanBoard;
+
 implementation
 
 {$R *.fmx}
-{ TFrame1 }
+{ TfrmKanBanBoard }
+
+procedure TfrmKanBanBoard.FocusPanel(APanel: TPanel);
+begin
+  APanel.BeginUpdate;
+  try
+    APanel.Width := self.Width - 20;
+    APanel.Height := self.Height - tbBoard.Height - 20;
+    APanel.Position.X := 10;
+    APanel.Position.Y := tbBoard.Height + 10;
+  finally
+    APanel.EndUpdate;
+  end;
+end;
 
 procedure TfrmKanBanBoard.InitDSColumns;
 begin
-  adsColumns.Close;
-  adsColumns.Manager := FManager;
   FManager.Clear;
-  adsColumns.SetSourceCriteria(FManager.Find<TKanBanItemStatus>);
-  adsColumns.Open;
   FStatusList := FManager.Find<TKanBanItemStatus>.List;
   FItemsList := FManager.Find<TKanBanItem>.List;
 end;
@@ -56,9 +73,17 @@ begin
     FManager := TObjectManager.Create(dmKBClient.Echo.Pool.GetConnection);
 end;
 
+procedure TfrmKanBanBoard.KbBoardItemDblClick(Sender: TObject; AColumn: TTMSFNCKanbanBoardColumn;
+  AItem: TTMSFNCKanbanBoardItem);
+begin
+  pnlDetail.Visible := true;
+  // FocusPanel(pnlDetail);
+end;
+
 procedure TfrmKanBanBoard.LoadBoard;
 begin
   pnlConfigure.Visible := false;
+  pnlDetail.Visible := false;
   InitManager;
   InitDSColumns;
   LoadColumns;
@@ -81,10 +106,8 @@ begin
       itm := col.AddItem(dbItm.TaskTitle);
       itm.Text := dbItm.TaskText;
       itm.Title := dbItm.TaskTitle;
-
     end;
   end;
-
 end;
 
 procedure TfrmKanBanBoard.LoadColumns;
@@ -104,17 +127,12 @@ end;
 procedure TfrmKanBanBoard.tbBtnConfigureClick(Sender: TObject);
 begin
   if pnlConfigure.Visible then
-    pnlConfigure.Visible := false
-  else
   begin
-    pnlConfigure.Visible := true;
-    pnlConfigure.BeginUpdate;
-    pnlConfigure.Width := self.Width - 20;
-    pnlConfigure.Height := self.Height - tbBoard.Height - 20;
-    pnlConfigure.Position.X := 10;
-    pnlConfigure.Position.Y := tbBoard.Height + 10;
-    pnlConfigure.EndUpdate;
+    pnlConfigure.Visible := false;
+    exit;
   end;
+  pnlConfigure.Visible := true;
+  FocusPanel(pnlConfigure);
   if FBoardConfig = nil then
     FBoardConfig := TfrmKanBanBoardConfig.Create(self);
   FBoardConfig.Manager := FManager;
@@ -124,7 +142,11 @@ begin
   FBoardConfig.LoadItemsList;
   if not FBoardConfig.lytBoardConfigure.Parent.Equals(pnlConfigure) then
     FBoardConfig.lytBoardConfigure.Parent := pnlConfigure;
+end;
 
+procedure TfrmKanBanBoard.tbBtnDetailCloseClick(Sender: TObject);
+begin
+  pnlDetail.Visible := false;
 end;
 
 end.

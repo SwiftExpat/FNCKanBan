@@ -156,7 +156,6 @@ var
 begin
   lbStatus.Items.Clear;
   lbStatus.BeginUpdate;
-
   try
     for s in StatusList do
     begin
@@ -166,7 +165,6 @@ begin
   finally
     lbStatus.EndUpdate;
   end;
-
 end;
 
 procedure TfrmKanBanBoardConfig.tvItemsBeforeItemShowDetailControl(Sender: TObject; AItem: TTMSFNCTableViewItem;
@@ -188,6 +186,7 @@ var
 begin
   kbi := TKanBanItem(AItem.DataObject);
   FManager.Update(kbi);
+  FManager.Flush;
   AItem.Text := Kbi.TaskTitle;
 end;
 

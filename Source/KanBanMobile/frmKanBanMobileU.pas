@@ -6,8 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics,
   FMX.TMSFNCGraphicsTypes, FMX.TMSFNCPageControl, FMX.TMSFNCTabSet, FMX.TMSFNCCustomControl,
-  FMX.TMSFNCCustomScrollControl, FMX.TMSFNCKanbanBoard, frmKanBanClientStatus,frmKanBanClientItemEdit,
-  FMX.Controls.Presentation, FMX.StdCtrls;
+  FMX.TMSFNCCustomScrollControl, FMX.TMSFNCKanbanBoard, frameKanBanClientStatus, frmKanBanClientItemEdit,
+  FMX.Controls.Presentation, FMX.StdCtrls, formKanBanClientBoard;
 
 type
   TfrmKanBanMobile = class(TForm)
@@ -19,9 +19,12 @@ type
     Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     FKanBanStatus: TfrmKBClientStatus;
     FKanBanItemEdit: TfrmKBClientItemEdit;
+    FKanBanBoard: TfrmKanBanBoard;
+    FLoaded: Boolean;
   public
     { Public declarations }
   end;
@@ -32,11 +35,12 @@ var
 implementation
 
 {$R *.fmx}
+
 uses FMX.SERTTK.Marshal;
 
 procedure TfrmKanBanMobile.Button1Click(Sender: TObject);
 begin
-    TSERTTKMarshalAPI.ShowMarshal;
+  TSERTTKMarshalAPI.ShowMarshal;
 end;
 
 procedure TfrmKanBanMobile.FormCreate(Sender: TObject);
@@ -46,7 +50,19 @@ begin
   FKanBanStatus.DeclareClient('MobileClient');
   FKanBanItemEdit := TfrmKBClientItemEdit.Create(self);
   FKanBanItemEdit.Parent := pcMain.PageContainers[1];
-  FKanBanItemEdit.AssignPrefix( 'Mobile ');
+  FKanBanItemEdit.AssignPrefix('Mobile ');
+
+  FKanBanBoard := TfrmKanBanBoard.Create(self);
+  FKanBanBoard.lytBoard.Parent := pcMain.PageContainers[0];
+end;
+
+procedure TfrmKanBanMobile.FormShow(Sender: TObject);
+begin
+  if not FLoaded then
+  begin
+    FKanBanBoard.LoadBoard;
+    FLoaded := true;
+  end;
 end;
 
 end.

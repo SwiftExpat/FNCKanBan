@@ -221,7 +221,7 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\KanBanClientCommon\frmKanBanClientStatus.pas">
+        <DCCReference Include="..\KanBanClientCommon\frameKanBanClientStatus.pas">
             <Form>frmKBClientStatus</Form>
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
@@ -231,17 +231,16 @@
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\KanBanClientCommon\frmKanBanClientBoard.pas">
-            <Form>frmKanBanBoard</Form>
-            <FormType>fmx</FormType>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="frmKanBanBoardConfigure.pas">
+        <DCCReference Include="..\KanBanClientCommon\frmKanBanBoardConfigure.pas">
             <Form>frmKanBanBoardConfig</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="..\KanBanClientCommon\frmKanBanItemDetail.pas">
             <Form>frmKanbanItmDetail</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="..\KanBanClientCommon\formKanBanClientBoard.pas">
+            <Form>frmKanBanBoard</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

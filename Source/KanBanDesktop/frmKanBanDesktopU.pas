@@ -6,8 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics,
   FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomScrollControl, FMX.TMSFNCKanbanBoard, FMX.TMSFNCPageControl,
-  FMX.TMSFNCCustomControl, FMX.TMSFNCTabSet, dmKanBanClient, frmKanBanClientStatus, frmKanBanClientItemEdit,
-  FMX.Controls.Presentation, FMX.StdCtrls, frmKanBanClientBoard;
+  FMX.TMSFNCCustomControl, FMX.TMSFNCTabSet, dmKanBanClient, frameKanBanClientStatus, frmKanBanClientItemEdit,
+  FMX.Controls.Presentation, FMX.StdCtrls, formKanBanClientBoard;
 
 type
   TfrmKanBanDesktop = class(TForm)
@@ -53,7 +53,7 @@ begin
   FKanBanItemEdit.AssignPrefix('Desktop ');
 
   FKanBanBoard := TfrmKanBanBoard.Create(self);
-  FKanBanBoard.Parent :=pcMain.PageContainers[0];
+  FKanBanBoard.lytBoard.Parent :=pcMain.PageContainers[0];
 
 end;
 
@@ -64,7 +64,6 @@ begin
     FKanBanBoard.LoadBoard;
     FLoaded := true;
   end;
-
 end;
 
 end.
