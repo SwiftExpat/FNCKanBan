@@ -231,6 +231,15 @@
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="..\KanBanClientCommon\frmKanBanClientBoard.pas">
+            <Form>frmKanBanBoard</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="frmKanBanBoardConfigure.pas">
+            <Form>frmKanBanBoardConfig</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

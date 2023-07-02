@@ -1,0 +1,257 @@
+object frmKanBanBoard: TfrmKanBanBoard
+  Align = Client
+  Size.Width = 866.000000000000000000
+  Size.Height = 510.000000000000000000
+  Size.PlatformDefault = False
+  object lytBoard: TLayout
+    Align = Client
+    Size.Width = 866.000000000000000000
+    Size.Height = 510.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object KbBoard: TTMSFNCKanbanBoard
+      Color = xFFEEF2F9
+      Align = Client
+      Size.Width = 866.000000000000000000
+      Size.Height = 480.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Fill.Color = xFFEEF2F9
+      Columns = <
+        item
+          Name = 'Header0'
+          HeaderText = 'Backlog'
+          FooterText = 'Footer 0'
+          HeaderHorizontalTextAlign = gtaLeading
+          Width = 250.000000000000000000
+          HeaderFont.Name = 'Segoe UI'
+          FooterFont.Name = 'Segoe UI'
+          Items = <
+            item
+              Text = 
+                'Test performance of the new feature.<br><i>And with remote conne' +
+                'ction.</i>'
+              Title = 'QA'
+              VerticalTextAlign = gtaCenter
+              TextColor = xFF7A7A7A
+              SelectedTextColor = claBlack
+              UseDefaultAppearance = False
+              Color = xFFFFFFFE
+              SelectedColor = x7F5A81E6
+              MarkType = [kbmtTop]
+              MarkColor = xFF5A81E6
+              MarkSizeTop = 8.000000000000000000
+              MarkRounding = 3
+              MarkCorners = [gcTopLeft, gcTopRight]
+              TitleVerticalTextAlign = gtaCenter
+              TitleColor = xFF454545
+              SelectedTitleColor = claBlack
+              Rounding = 3
+              RoundingCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+              SelectedStrokeColor = xFF5A81E6
+            end
+            item
+              Text = 'Write the developers guide and <a href="">FAQ</a>'
+              Title = 'Documentation'
+              VerticalTextAlign = gtaCenter
+              TextColor = xFF7A7A7A
+              SelectedTextColor = claBlack
+              UseDefaultAppearance = False
+              Color = xFFFFFFFE
+              SelectedColor = x7FB0EDA8
+              MarkType = [kbmtTop]
+              MarkColor = xFFB0EDA8
+              MarkSizeTop = 8.000000000000000000
+              MarkRounding = 3
+              MarkCorners = [gcTopLeft, gcTopRight]
+              TitleVerticalTextAlign = gtaCenter
+              TitleColor = xFF454545
+              SelectedTitleColor = claBlack
+              Rounding = 3
+              RoundingCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+              SelectedStrokeColor = xFFB0EDA8
+            end
+            item
+              Text = 'What will we implement in the next release'
+              Title = 'Meeting: Next Phase'
+              Expanded = False
+              Expandable = True
+              VerticalTextAlign = gtaCenter
+              TextColor = xFF7A7A7A
+              SelectedTextColor = claBlack
+              UseDefaultAppearance = False
+              Color = xFFFFFFFE
+              SelectedColor = x7FB0EDA8
+              MarkType = [kbmtTop]
+              MarkColor = xFFB0EDA8
+              MarkSizeTop = 8.000000000000000000
+              MarkRounding = 3
+              MarkCorners = [gcTopLeft, gcTopRight]
+              TitleVerticalTextAlign = gtaCenter
+              TitleColor = xFF454545
+              SelectedTitleColor = claBlack
+              Rounding = 3
+              RoundingCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+              SelectedStrokeColor = xFFB0EDA8
+            end>
+          Expandable = True
+          Filter = <>
+        end
+        item
+          Name = 'Header1'
+          HeaderText = 'In Progress'
+          FooterText = 'Footer 1'
+          HeaderHorizontalTextAlign = gtaLeading
+          Width = 250.000000000000000000
+          HeaderFont.Name = 'Segoe UI'
+          FooterFont.Name = 'Segoe UI'
+          Items = <
+            item
+              Text = 'Fix <u>high priority</u> issues documented by customer.'
+              Title = 'Bugfix 376'
+              VerticalTextAlign = gtaCenter
+              TextColor = xFF7A7A7A
+              SelectedTextColor = claBlack
+              UseDefaultAppearance = False
+              Color = xFFFFFFFE
+              SelectedColor = x7FEE4353
+              MarkType = [kbmtTop]
+              MarkColor = xFFEE4353
+              MarkSizeTop = 8.000000000000000000
+              MarkRounding = 3
+              MarkCorners = [gcTopLeft, gcTopRight]
+              TitleVerticalTextAlign = gtaCenter
+              TitleColor = xFF454545
+              SelectedTitleColor = claBlack
+              Rounding = 3
+              RoundingCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+              SelectedStrokeColor = xFFEE4353
+            end
+            item
+              Text = 
+                'Get in contact with the customer to let him know how far we are ' +
+                'on developing the newly requested items.'
+              Title = 'Update Customer'
+              VerticalTextAlign = gtaCenter
+              TextColor = xFF7A7A7A
+              SelectedTextColor = claBlack
+              UseDefaultAppearance = False
+              Color = xFFFFFFFE
+              SelectedColor = x7FF0CA35
+              MarkType = [kbmtTop]
+              MarkColor = xFFF0CA35
+              MarkSizeTop = 8.000000000000000000
+              MarkRounding = 3
+              MarkCorners = [gcTopLeft, gcTopRight]
+              TitleVerticalTextAlign = gtaCenter
+              TitleColor = xFF454545
+              SelectedTitleColor = claBlack
+              Rounding = 3
+              RoundingCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+              SelectedStrokeColor = xFFF0CA35
+            end>
+          Expandable = True
+          Filter = <>
+        end
+        item
+          Name = 'Header2'
+          HeaderText = 'Complete'
+          FooterText = 'Footer 2'
+          HeaderHorizontalTextAlign = gtaLeading
+          Width = 250.000000000000000000
+          HeaderFont.Name = 'Segoe UI'
+          FooterFont.Name = 'Segoe UI'
+          Items = <
+            item
+              Text = 'Name: <b>Serv2</b><br>IP: <b>192.168.124.12</b>'
+              Title = 'Install New Server'
+              VerticalTextAlign = gtaCenter
+              TextColor = xFF7A7A7A
+              SelectedTextColor = claBlack
+              UseDefaultAppearance = False
+              Color = xFFF0FAF2
+              SelectedColor = xFFB0EDA8
+              MarkCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+              TitleVerticalTextAlign = gtaCenter
+              TitleColor = xFF454545
+              SelectedTitleColor = claBlack
+              Rounding = 3
+              RoundingCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+              StrokeColor = xFFB0EDA8
+              SelectedStrokeColor = xFFB0EDA8
+            end>
+          Filter = <>
+        end>
+      ColumnsAppearance.Margins.Left = 10.000000000000000000
+      ColumnsAppearance.Margins.Top = 10.000000000000000000
+      ColumnsAppearance.Margins.Right = 10.000000000000000000
+      ColumnsAppearance.Margins.Bottom = 10.000000000000000000
+      ColumnsAppearance.HeaderFont.Size = 14.000000000000000000
+      ColumnsAppearance.HeaderFont.Color = xFF454545
+      ColumnsAppearance.HeaderFont.Name = 'Segoe UI'
+      ColumnsAppearance.HeaderFont.StyleExt = {00070000000000000004000000}
+      ColumnsAppearance.FooterFont.Name = 'Segoe UI'
+      ColumnsAppearance.HeaderFill.Kind = gfkGradient
+      ColumnsAppearance.HeaderFill.Color = xFFEEF2F9
+      ColumnsAppearance.HeaderFill.ColorTo = xFFF0F3FA
+      ColumnsAppearance.FooterFill.Color = xFFF6F8FC
+      ColumnsAppearance.HeaderStroke.Kind = gskNone
+      ColumnsAppearance.HeaderStroke.Color = x00FCF8F6
+      ColumnsAppearance.FooterStroke.Kind = gskNone
+      ColumnsAppearance.FooterStroke.Color = x00FCF8F6
+      ColumnsAppearance.Fill.Color = xFFF6F8FC
+      ColumnsAppearance.Stroke.Color = xFFEEF2F9
+      Interaction.DragDropMode = kbdmMove
+      ItemsAppearance.Font.Name = 'Segoe UI'
+      ItemsAppearance.TitleFont.Size = 14.000000000000000000
+      ItemsAppearance.TitleFont.Color = xFF454545
+      ItemsAppearance.TitleFont.Name = 'Segoe UI'
+      ItemsAppearance.Margins.Left = 10.000000000000000000
+      ItemsAppearance.Margins.Top = 10.000000000000000000
+      ItemsAppearance.Margins.Right = 10.000000000000000000
+      ItemsAppearance.Margins.Bottom = 10.000000000000000000
+      ItemsAppearance.Fill.Color = xFFFFFFFE
+      ItemsAppearance.FixedHeight = 25.000000000000000000
+      ItemsAppearance.ShowFocus = False
+      GlobalFont.Scale = 1.000000000000000000
+      GlobalFont.Style = []
+    end
+    object pnlConfigure: TPanel
+      Position.X = 592.000000000000000000
+      Position.Y = 360.000000000000000000
+      TabOrder = 1
+    end
+    object tbBoard: TTMSFNCToolBar
+      Align = Top
+      Size.Width = 866.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      CompactBitmaps = <>
+      Font.Name = 'Segoe UI'
+      object tbBtnConfigure: TTMSFNCToolBarButton
+        Position.X = 9.000000000000000000
+        Position.Y = 3.000000000000000000
+        Size.Width = 30.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        OnClick = tbBtnConfigureClick
+        Font.Name = 'Segoe UI'
+        Text = 'Config'
+        Bitmaps = <>
+        LargeLayoutBitmaps = <>
+        DisabledBitmaps = <>
+        HoverBitmaps = <>
+        LargeLayoutDisabledBitmaps = <>
+        LargeLayoutHoverBitmaps = <>
+        ControlIndex = 0
+      end
+    end
+  end
+  object adsColumns: TAureliusDataset
+    FieldDefs = <>
+    Left = 768
+    Top = 408
+  end
+end

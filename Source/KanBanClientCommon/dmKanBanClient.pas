@@ -165,8 +165,13 @@ begin
     NodeManager.DefineSelfNode(DBName);
   end;
 
-  // Register this node at the server, if this is a client module
-  FEcho.GetRemoteNode(URI_Remote_Node).RegisterNode;
+  try
+    // Register this node at the server, if this is a client module
+    FEcho.GetRemoteNode(URI_Remote_Node).RegisterNode;
+  except
+    on E: Exception do
+      LogMsg('Error in Setup Remote' + E.Message);
+  end;
 end;
 
 procedure TdmKBClient.UpdateDBStructure;

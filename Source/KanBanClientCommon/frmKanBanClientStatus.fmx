@@ -74,18 +74,12 @@ object frmKBClientStatus: TfrmKBClientStatus
     Size.Height = 358.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
-    Viewport.Width = 594.000000000000000000
-    Viewport.Height = 354.000000000000000000
+    Viewport.Width = 598.000000000000000000
+    Viewport.Height = 358.000000000000000000
   end
-  object tmrPush: TTimer
+  object tmrSynchronize: TTimer
     Enabled = False
-    OnTimer = tmrPushTimer
-    Left = 288
-    Top = 192
-  end
-  object tmrPull: TTimer
-    Enabled = False
-    OnTimer = tmrPullTimer
+    OnTimer = tmrSynchronizeTimer
     Left = 296
     Top = 200
   end
