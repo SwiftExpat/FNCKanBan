@@ -20,6 +20,7 @@ object frmKanBanBoardConfig: TfrmKanBanBoardConfig
       Size.Height = 480.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
+      ActivePageIndex = 1
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       TabAppearance.Font.Name = 'Segoe UI'
@@ -146,17 +147,6 @@ object frmKanBanBoardConfig: TfrmKanBanBoardConfig
           DisabledBitmaps = <>
           UseDefaultAppearance = True
         end>
-      object TMSFNCPageControl1Page1: TTMSFNCPageControlContainer
-        Align = Client
-        Margins.Bottom = 29.000000000000000000
-        Size.Width = 640.000000000000000000
-        Size.Height = 451.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 1
-        TabStop = False
-        PageIndex = 1
-        IsActive = False
-      end
       object TMSFNCPageControl1Page2: TTMSFNCPageControlContainer
         Align = Client
         Margins.Bottom = 29.000000000000000000
@@ -176,13 +166,104 @@ object frmKanBanBoardConfig: TfrmKanBanBoardConfig
         Size.PlatformDefault = False
         TabOrder = 0
         TabStop = False
+        Visible = False
         PageIndex = 0
-        IsActive = True
-        object TMSFNCTableView1: TTMSFNCTableView
-          Position.X = 304.000000000000000000
+        IsActive = False
+        object lbStatus: TTMSFNCListBox
+          Position.X = 24.000000000000000000
+          Position.Y = 112.000000000000000000
+          Size.Width = 200.000000000000000000
+          Size.Height = 220.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Stroke.Color = claDarkgray
+          ItemsAppearance.Font.Color = xFF7A7A7A
+          ItemsAppearance.Font.Name = 'Segoe UI'
+          ItemsAppearance.SelectedFill.Color = xFFF6F8FC
+          ItemsAppearance.SelectedStroke.Color = xFF2D9BEF
+          ItemsAppearance.SelectedStroke.Width = 2.000000000000000000
+          ItemsAppearance.FixedHeight = 25.000000000000000000
+          ItemsAppearance.ShowFocus = False
+          DefaultItem.TextColor = xFF454545
+          DefaultItem.SelectedTextColor = xFF454545
+          Items = <
+            item
+              Text = 'Bugfix 376'
+              TextColor = xFF454545
+              SelectedTextColor = xFF454545
+            end
+            item
+              Text = 'Bugfix 378'
+              TextColor = xFF454545
+              SelectedTextColor = xFF454545
+            end
+            item
+              Text = 'Customer Update'
+              TextColor = xFF454545
+              SelectedTextColor = xFF454545
+            end
+            item
+              Text = 'Install New server'
+              TextColor = xFF454545
+              SelectedTextColor = xFF454545
+            end
+            item
+              Text = 'Meeting: Next Phase'
+              TextColor = xFF454545
+              SelectedTextColor = xFF454545
+            end
+            item
+              Text = 'Release Planning'
+              TextColor = xFF454545
+              SelectedTextColor = xFF454545
+            end>
+          Header.Visible = True
+          Header.Text = 'Status List'
+          Header.Fill.Color = xFFEEF2F9
+          Header.Font.Size = 14.000000000000000000
+          Header.Font.Color = xFF454545
+          Header.Font.Name = 'Segoe UI'
+          Header.Font.StyleExt = {00070000000000000004000000}
+          Header.Stroke.Kind = gskNone
+          Header.Size = 36.000000000000000000
+          Header.SortIndicatorColor = claSteelblue
+          OnItemSelected = lbStatusItemSelected
+          GlobalFont.Scale = 1.000000000000000000
+          GlobalFont.Style = []
+        end
+        object btnStatusDelete: TButton
+          Position.X = 24.000000000000000000
           Position.Y = 64.000000000000000000
-          Size.Width = 250.000000000000000000
-          Size.Height = 350.000000000000000000
+          TabOrder = 1
+          Text = 'Delete'
+          OnClick = btnStatusDeleteClick
+        end
+        object edtStatusDisplay: TTMSFNCEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 2
+          Position.X = 272.000000000000000000
+          Position.Y = 152.000000000000000000
+          OnChange = edtStatusDisplayChange
+          Text = ''
+          Lookup.Separator = ';'
+        end
+      end
+      object TMSFNCPageControl1Page1: TTMSFNCPageControlContainer
+        Align = Client
+        Margins.Bottom = 29.000000000000000000
+        Size.Width = 640.000000000000000000
+        Size.Height = 451.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        TabStop = False
+        PageIndex = 1
+        IsActive = True
+        object tvItems: TTMSFNCTableView
+          Color = claNull
+          Position.X = 40.000000000000000000
+          Position.Y = 53.000000000000000000
+          Size.Width = 362.000000000000000000
+          Size.Height = 382.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           Stroke.Color = xFFB2B2B2
@@ -198,6 +279,7 @@ object frmKanBanBoardConfig: TfrmKanBanBoardConfig
           ItemAppearance.AccessoryFont.Name = 'Segoe UI'
           ItemAppearance.AccessoryFont.StyleExt = {00070000000000000004000000}
           ItemAppearance.ShowFocus = False
+          DefaultItem.DetailControl = pnlItemDetail
           DefaultItem.VerticalTextAlign = gtaCenter
           DefaultItem.SelectedTextColor = claBlack
           Items = <
@@ -253,6 +335,7 @@ object frmKanBanBoardConfig: TfrmKanBanBoardConfig
           Footer.Stroke.Color = xFFB2B2B2
           Footer.Height = 30.000000000000000000
           Interaction.AnimationFactor = 2.500000000000000000
+          Interaction.ShowEditButton = True
           LookupBar.Font.Name = 'Segoe UI'
           LookupBar.InActiveFont.Color = claSilver
           LookupBar.InActiveFont.Name = 'Segoe UI'
@@ -265,66 +348,28 @@ object frmKanBanBoardConfig: TfrmKanBanBoardConfig
           GlobalFont.Name = 'Segoe UI'
           GlobalFont.Scale = 1.000000000000000000
           GlobalFont.Style = []
+          OnBeforeItemShowDetailControl = tvItemsBeforeItemShowDetailControl
+          OnItemHideDetailControl = tvItemsItemHideDetailControl
         end
-        object lbStatus: TTMSFNCListBox
-          Position.X = 24.000000000000000000
-          Position.Y = 64.000000000000000000
-          Size.Width = 200.000000000000000000
-          Size.Height = 220.000000000000000000
-          Size.PlatformDefault = False
+        object pnlItemDetail: TPanel
+          Position.X = 264.000000000000000000
+          Position.Y = 168.000000000000000000
+          Visible = False
           TabOrder = 1
-          Stroke.Color = claDarkgray
-          ItemsAppearance.Font.Color = xFF7A7A7A
-          ItemsAppearance.Font.Name = 'Segoe UI'
-          ItemsAppearance.SelectedFill.Color = xFFF6F8FC
-          ItemsAppearance.SelectedStroke.Color = xFF2D9BEF
-          ItemsAppearance.SelectedStroke.Width = 2.000000000000000000
-          ItemsAppearance.FixedHeight = 25.000000000000000000
-          ItemsAppearance.ShowFocus = False
-          DefaultItem.TextColor = xFF454545
-          DefaultItem.SelectedTextColor = xFF454545
-          Items = <
-            item
-              Text = 'Bugfix 376'
-              TextColor = xFF454545
-              SelectedTextColor = xFF454545
-            end
-            item
-              Text = 'Bugfix 378'
-              TextColor = xFF454545
-              SelectedTextColor = xFF454545
-            end
-            item
-              Text = 'Customer Update'
-              TextColor = xFF454545
-              SelectedTextColor = xFF454545
-            end
-            item
-              Text = 'Install New server'
-              TextColor = xFF454545
-              SelectedTextColor = xFF454545
-            end
-            item
-              Text = 'Meeting: Next Phase'
-              TextColor = xFF454545
-              SelectedTextColor = xFF454545
-            end
-            item
-              Text = 'Release Planning'
-              TextColor = xFF454545
-              SelectedTextColor = xFF454545
-            end>
-          Header.Text = 'Header'
-          Header.Fill.Color = xFFEEF2F9
-          Header.Font.Size = 14.000000000000000000
-          Header.Font.Color = xFF454545
-          Header.Font.Name = 'Segoe UI'
-          Header.Font.StyleExt = {00070000000000000004000000}
-          Header.Stroke.Kind = gskNone
-          Header.Size = 36.000000000000000000
-          Header.SortIndicatorColor = claSteelblue
-          GlobalFont.Scale = 1.000000000000000000
-          GlobalFont.Style = []
+        end
+        object btnItemDelete: TButton
+          Position.X = 144.000000000000000000
+          Position.Y = 23.000000000000000000
+          TabOrder = 2
+          Text = 'Delete'
+          OnClick = btnItemDeleteClick
+        end
+        object btnItemAdd: TButton
+          Position.X = 40.000000000000000000
+          Position.Y = 23.000000000000000000
+          TabOrder = 3
+          Text = 'Add'
+          OnClick = btnItemAddClick
         end
       end
     end

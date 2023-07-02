@@ -240,6 +240,10 @@
             <Form>frmKanBanBoardConfig</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="..\KanBanClientCommon\frmKanBanItemDetail.pas">
+            <Form>frmKanbanItmDetail</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

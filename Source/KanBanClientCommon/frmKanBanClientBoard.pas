@@ -29,6 +29,7 @@ type
   private
     FStatusList: TObjectList<TKanBanItemStatus>;
     FItemsList: TObjectList<TKanBanItem>;
+    FBoardConfig: TfrmKanBanBoardConfig;
   public
     procedure LoadBoard;
   end;
@@ -114,6 +115,16 @@ begin
     pnlConfigure.Position.Y := tbBoard.Height + 10;
     pnlConfigure.EndUpdate;
   end;
+  if FBoardConfig = nil then
+    FBoardConfig := TfrmKanBanBoardConfig.Create(self);
+  FBoardConfig.Manager := FManager;
+  FBoardConfig.StatusList := FStatusList;
+  FBoardConfig.ItemsList := FItemsList;
+  FBoardConfig.LoadStatusList;
+  FBoardConfig.LoadItemsList;
+  if not FBoardConfig.lytBoardConfigure.Parent.Equals(pnlConfigure) then
+    FBoardConfig.lytBoardConfigure.Parent := pnlConfigure;
+
 end;
 
 end.

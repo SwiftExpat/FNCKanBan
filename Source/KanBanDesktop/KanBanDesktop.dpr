@@ -8,13 +8,13 @@ uses
   frmKanBanClientStatus in '..\KanBanClientCommon\frmKanBanClientStatus.pas' {frmKBClientStatus: TFrame},
   frmKanBanClientItemEdit in '..\KanBanClientCommon\frmKanBanClientItemEdit.pas' {frmKBClientItemEdit: TFrame},
   frmKanBanClientBoard in '..\KanBanClientCommon\frmKanBanClientBoard.pas' {frmKanBanBoard: TFrame},
-  frmKanBanBoardConfigure in 'frmKanBanBoardConfigure.pas' {frmKanBanBoardConfig};
+  frmKanBanBoardConfigure in 'frmKanBanBoardConfigure.pas' {frmKanBanBoardConfig},
+  frmKanBanItemDetail in '..\KanBanClientCommon\frmKanBanItemDetail.pas' {frmKanbanItmDetail};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.CreateForm(TfrmKanBanDesktop, frmKanBanDesktop);
-  Application.CreateForm(TfrmKanBanBoardConfig, frmKanBanBoardConfig);
   Application.Run;
 end.
